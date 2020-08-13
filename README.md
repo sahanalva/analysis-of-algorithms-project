@@ -20,10 +20,7 @@ are used for the implementation.
 
 ### 1.1 Graph Generation
 
-The graph is an object the user-defined class calledGraph(). The graph is implemented
-in an Adjacency list. Every list element represents a vertex and the points to a Linked List
-with vertices and weights it is connected to. Nodes of the Linked Lists are an object of
-GraphNode().
+The graph is an object the user-defined class calledGraph(). The graph is implemented in an Adjacency list. Every list element represents a vertex and the points to a Linked List with vertices and weights it is connected to. Nodes of the Linked Lists are an object of GraphNode().
 
 TheGraphNodeobject has the following attributes:
 
@@ -34,18 +31,14 @@ TheGraphNodeobject has the following attributes:
 TheGraph()class has the following basic attributes and methods for Graph Generation:
 
 - numvertices : Initialize the graph with the required number of vertices
-- addEdge(startvertex, endvertex, weight) : Add a weighted edge (GraphNode) be-
-    tween startvertex and endvertex in both the linked lists.
+- addEdge(startvertex, endvertex, weight) : Add a weighted edge (GraphNode) between startvertex and endvertex in both the linked lists.
 - removeAllEdges() : Removes all the edges of the graph
 - createAllVertexLoop() : This method connects all the vertices of the graph in a loop.
     This is to ensure that the graph is connected.
-- pairgenerator() : This is ageneratormethod. It generates an edge -a pair of two vertices in the graph. It makes sure that no two edges repeat and no self-loop.
+- pairgenerator() : This is ageneratormethod. It generates an edge a pair of two vertices in the graph. It makes sure that no two edges repeat and no self-loop.
 
 
-- createSparseGraph(avgdegree, maxweight) : Creates sparse graph of average degree
-    ’avgdegree’ by adding the required number of edges to the graph. First, the graph is
-    connected bycreateAllVertexLoop(). Therefore, the additional edges to be added
-    is calculated by this formula:
+- createSparseGraph(avgdegree, maxweight) : Creates sparse graph of average degree ’avgdegree’ by adding the required number of edges to the graph. First, the graph is connected bycreateAllVertexLoop(). Therefore, the additional edges to be added is calculated by this formula:
 
 ```
 # of additional edges = (average degree - 2) * # of vertices2
@@ -53,35 +46,24 @@ TheGraph()class has the following basic attributes and methods for Graph Generat
 
 The edges are generated randomly using the pairgenerator method. The weights of
 the edges are chosen randomly between (0, maxweight).
-```
+
 - createDenseGraph(adjacencyfraction, maxweight): Creates dense graph of adjacencyfraction
-    (i.e adjacencyfraction*100% of the vertices are connected to each vertex) by adding the required number of edges to the graph. First, the graph is connected bycreateAl-
-    lVertexLoop(). Therefore, the additional edges to be added is calculated by this
+    (i.e adjacencyfraction*100% of the vertices are connected to each vertex) by adding the required number of edges to the graph. First, the graph is connected bycreateAllVertexLoop(). Therefore, the additional edges to be added is calculated by this
     formula:
 
-```
-# of additional edges =
-```
-```
-# of vertices∗(# of vertices−1)
-2
-```
-```
-∗adjacency fraction−# of vertices
-```
-```
+
+# of additional edges = # of vertices∗(# of vertices−1) / 2 ∗adjacency fraction−# of vertices
+
 The edges are generated randomly using the pairgenerator method. The weights of
 the edges is chosen randomly between (0, maxweight).
-```
+
 ### 1.2 Heap
 
-```
-The Heap is an object of the class Heap(). The Heap nodes are objects of the class HeapN-
-ode(). The Heap nodes are stored in a list to form a Heap structure.
-```
-```
+
+The Heap is an object of the class Heap(). The Heap nodes are objects of the class HeapNode(). The Heap nodes are stored in a list to form a Heap structure.
+
 TheHeapNodeobject has the following attributes:
-```
+
 - name - Name value of the node (ex: vertex or edge)
 - value - Value used to sort in the heap
 
@@ -92,7 +74,8 @@ TheHeapobject has the following attributes and methods:
 - parentIndex(index) : Gives the parent index of the input index
 - childrenIndices(index) : Gives the children’s indices of the input index
 - maxNode() : Returns the max of the heap
-- insertHeapNode(name, value, indexlist) :CreatesaHeapN odewithnameandvalue, andinsertsittotheHeap.Anoptionalinputof indexlistisgiveninordertokeeptrackof theindicesof theelementsof heap(f orDijkstraimplementation)deleteHeapN ode(index, indexlist) :
+- insertHeapNode(name, value, indexlist) :CreatesaHeapN odewithnameandvalue, andinsertsittotheHeap.Anoptionalinputof indexlistisgiveninordertokeeptrackof theindicesof theelementsof heap(f orDijkstraimplementation)
+deleteHeapN ode(index, indexlist) :
     DeletesaHeapN odeattheindex, andf ixestheHeap.Anoptionalinputof indexlistisgiveninordertokeeptrackof theindicesof theelementsof heap(f orDijkstraimplementation)
 
 •• heapSort() : Performs HeapSort by doing maxNode() and deleteHeapNode() repeatedly.
