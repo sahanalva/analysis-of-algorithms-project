@@ -39,7 +39,7 @@ TheGraph()class has the following basic attributes and methods for Graph Generat
 - createSparseGraph(avgdegree, maxweight) : Creates sparse graph of average degree ’avgdegree’ by adding the required number of edges to the graph. First, the graph is connected bycreateAllVertexLoop(). Therefore, the additional edges to be added is calculated by this formula:
 
 ```
-# of additional edges = (average degree - 2) * # of vertices2
+# of additional edges =  0.5 * (average degree - 2) * (number of vertices) 
 ```
 
 The edges are generated randomly using the pairgenerator method. The weights of
@@ -50,7 +50,7 @@ the edges are chosen randomly between (0, maxweight).
     formula:
 
 ```
-# of additional edges = # of vertices∗(# of vertices−1) / 2 ∗adjacency fraction−# of vertices
+# of additional edges = (0.5 * (number of vertices) * (number of vertices−1) * adjacency fraction) − (number of vertices)
 ```
 
 The edges are generated randomly using the pairgenerator method. The weights of
