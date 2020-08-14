@@ -36,8 +36,6 @@ TheGraph()class has the following basic attributes and methods for Graph Generat
 - createAllVertexLoop() : This method connects all the vertices of the graph in a loop.
     This is to ensure that the graph is connected.
 - pairgenerator() : This is ageneratormethod. It generates an edge a pair of two vertices in the graph. It makes sure that no two edges repeat and no self-loop.
-
-
 - createSparseGraph(avgdegree, maxweight) : Creates sparse graph of average degree ’avgdegree’ by adding the required number of edges to the graph. First, the graph is connected bycreateAllVertexLoop(). Therefore, the additional edges to be added is calculated by this formula:
 
 ```
@@ -51,8 +49,9 @@ the edges are chosen randomly between (0, maxweight).
     (i.e adjacencyfraction*100% of the vertices are connected to each vertex) by adding the required number of edges to the graph. First, the graph is connected bycreateAllVertexLoop(). Therefore, the additional edges to be added is calculated by this
     formula:
 
-
+```
 # of additional edges = # of vertices∗(# of vertices−1) / 2 ∗adjacency fraction−# of vertices
+```
 
 The edges are generated randomly using the pairgenerator method. The weights of
 the edges is chosen randomly between (0, maxweight).
@@ -62,23 +61,21 @@ the edges is chosen randomly between (0, maxweight).
 
 The Heap is an object of the class Heap(). The Heap nodes are objects of the class HeapNode(). The Heap nodes are stored in a list to form a Heap structure.
 
-TheHeapNodeobject has the following attributes:
+The HeapNodeobject has the following attributes:
 
 - name - Name value of the node (ex: vertex or edge)
 - value - Value used to sort in the heap
 
-```
 TheHeapobject has the following attributes and methods:
-```
+
 - heap - List of all the HeapNode objects
 - parentIndex(index) : Gives the parent index of the input index
 - childrenIndices(index) : Gives the children’s indices of the input index
 - maxNode() : Returns the max of the heap
-- insertHeapNode(name, value, indexlist) :CreatesaHeapN odewithnameandvalue, andinsertsittotheHeap.Anoptionalinputof indexlistisgiveninordertokeeptrackof theindicesof theelementsof heap(f orDijkstraimplementation)
-deleteHeapN ode(index, indexlist) :
-    DeletesaHeapN odeattheindex, andf ixestheHeap.Anoptionalinputof indexlistisgiveninordertokeeptrackof theindicesof theelementsof heap(f orDijkstraimplementation)
+- insertHeapNode(name, value, indexlist): Creates a HeapNode with name and value, and inserts it to the Heap.An optional input of index list is given inorder to keep trac kof the indices of the elements of heap(for Dijkstra's implementation)
+- deleteHeapNode(index, indexlist): Deletes a HeapNode at the index, and fixes the Heap. An optional input of index list is given inorder to keep track of theindices of the elements of heap.(for Dijkstra's implementation)
 
-•• heapSort() : Performs HeapSort by doing maxNode() and deleteHeapNode() repeatedly.
+heapSort() : Performs HeapSort by doing maxNode() and deleteHeapNode() repeatedly.
 Returns the sorted by value node list.
 
 
@@ -86,37 +83,30 @@ Returns the sorted by value node list.
 
 All the algorithms are methods of the Graph() class:
 
-- Dijkstra’s without Heap - dijkstrasMaxBandwidthPath(source, destination, useheap
-    = False)
-       - Dijkstra's algorithm is implemented without the heap. Here the max band-
-          width value among the fringe vertices is found using aO(n) method (linear search).
-          Hence, the complexity isO((m+n)n).
-- Dijkstra’s with Heap - dijkstrasMaxBandwidthPath(source, destination, useheap =
-    True)
-       - Dijkstra's algorithm is implemented with the heap. Here the max bandwidth value among the fringe vertices is found using maxHeap() function. This takes
-          O(1). However, adding to n values to the heap and updating at most m values in the heap results in the complexity ofO((m+n)logn).
+- Dijkstra’s without Heap - dijkstrasMaxBandwidthPath(source, destination, useheap = False)
+    * Dijkstra's algorithm is implemented without the heap. Here the max bandwidth value among the fringe vertices is found using aO(n) method (linear search). Hence, the complexity is O((m+n)n).
+- Dijkstra’s with Heap - dijkstrasMaxBandwidthPath(source, destination, useheap = True)
+    * Dijkstra's algorithm is implemented with the heap. Here the max bandwidth value among the fringe vertices is found using maxHeap() function. This takes O(1). However, adding to n values to the heap and updating at most m values in the heap results in the complexity of O((m+n)logn).
 - Kruskal's - kruskalsMaxBandwidthPath(source, destination)
-    - Kruskal's algorithm is implemented with the user-defined heap. Here the edges are added and sorted using HeapSort. This takes O(mlogn). This, along with UnionFind routine takes a total time ofO((m+n)logn).
-- Kruskal's (using python sort) - kruskalsMaxBandwidthPathwithoutHeap(source, des-
-    tination)
-       - Kruskal's algorithm is implemented with the internal sorting function. Complexity remains the same. However, there is a difference in the time elapsed due to internal implementations.
+    * Kruskal's algorithm is implemented with the user-defined heap. Here the edges are added and sorted using HeapSort. This takes O(mlogn). This, along with UnionFind routine takes a total time of O((m+n)logn).
+- Kruskal's (using python sort) - kruskalsMaxBandwidthPathwithoutHeap(source, destination)
+    * Kruskal's algorithm is implemented with the internal sorting function. Complexity remains the same. However, there is a difference in the time elapsed due to internal implementations.
 
 
 ## 2 Results and Analysis
 
-The program was tested on 5 pairs of graphs with 5 different (s,t) pairs. The following ta-
-ble shows the average time taken in seconds to run the different algorithms in the experiment:
+The program was tested on 5 pairs of graphs with 5 different (s,t) pairs. The following table shows the average time taken in seconds to run the different algorithms in the experiment:
 
-NOTE: All the elapsed time results are obtained from a local system (Macbook Pro).
-They are expected to vary proportionally on a different system with different configurations.
+NOTE: All the elapsed time results are obtained from a local system (Macbook Pro). They are expected to vary proportionally on a different system with different configurations.
 
-```
-Algorithm Sparse Graph Dense Graph
-Dijkstra’s without heap 1.685 5.
-Dijkstra’s with heap 0.177 2.
-Kruskal’s 0.319 67.
-Kruskal’s (using python sort) 0.423 9.
-```
+
+|Algorithm|Sparse Graph|Dense Graph|
+|---|---|---|
+| Dijkstra’s without heap  | 1.685  | 5.462  |
+| Dijkstra’s with heap  | 0.177  | 2.874  |
+| Kruskal’s  | 0.319  | 67.822  |
+| Kruskal’s (using python sort)  | 0.423  | 9.804  |
+
 ### 2.1 Observations
 
 - Sparse Graph:
@@ -149,23 +139,21 @@ slower as compared to the rest of the algorithms especially in Dense Graph.
 The average time taken in seconds for different components of the algorithm graph
 as follows:
 
-```
-Component Dense Graph (Heap) Dense Graph (python sort)
-Inserting all edges 15.78 2.
-Heap Sort 45.32 2.
-UnionFind 5.57 4.
-DFS 0.02 0.
-```
+|Component|Dense Graph (Heap)|Dense Graph (python sort)|
+|---|---|---|
+| Inserting all edges  | 15.78  | 2.9  |
+| Heap Sort  | 45.32  | 2.1  |
+| UnionFind  | 5.57  | 4.49  |
+| DFS  | 0.02  | 0.023  |
+
+
 From the above results we can observe and infer the following points:
 
 - The user-defined Heap Operations are costly in python.
-- You can clearly see that Python sorted() -O(nlogn) is much faster than the
-    HeapSort() which is also anO(nlogn) operation. This might be due to the internal implementations of sorted()in C (since it is an internal function) as compared to the user-defined HeapsSort function.
-- However, this problem does not appear in sparse graph problems. This is mainly
-    due to the reason that the Heap does not have a large number of elements.
+- You can clearly see that Python sorted() -O(nlogn) is much faster than the HeapSort() which is also an O(nlogn) operation. This might be due to the internal implementations of sorted()in C (since it is an internal function) as compared to the user-defined HeapsSort function.
+- However, this problem does not appear in sparse graph problems. This is mainly due to the reason that the Heap does not have a large number of elements.
 - This might be due to the inefficient handling of the large lists in user-defined functions in Python.
-- Implementation of UnionFind functions is also slow due to this reason. (Large
-    list in user-defined function)
+- Implementation of UnionFind functions is also slow due to this reason. (Large list in user-defined function)
 
 Clearly, due to the limitations of the programming language, we are not able to check
 the exact performance of the given algorithms. The internal implementation of the
